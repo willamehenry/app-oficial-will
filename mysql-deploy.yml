@@ -25,4 +25,4 @@ spec:
       volumes:
       - name: local
         PersistentVolumeClaim:
-          claimName: local
+         claimName: local

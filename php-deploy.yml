@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: #precisa colocar a imagem do docker hub
+        image: willamehenry/meu-backnt-will:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
