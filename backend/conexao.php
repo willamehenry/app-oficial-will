@@ -1,5 +1,5 @@
 <?php
-$servername = "my-conector";
+$servername = "my-conetor";
 $username = "root";
 $password = "willameh";
 $database = "will-bank";
