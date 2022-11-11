@@ -24,5 +24,7 @@ spec:
           mountPath: /var/lib/mysql/
       volumes:
       - name: local
-        PersistentVolumeClaim:
-         claimName: local
+        persistentVolumeClaim: 
+          claimName: local
+          #hostPath:
+          # path: /will-bank/
