@@ -1,0 +1,85 @@
+aapiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: local 
+spec:
+  storageClassName: "manual" 
+  accessModes:
+   - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local
+  labels:
+    type: local 
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    patch: /will-bank/
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchlabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: #precisa colocar imagem do docker hub 
+        agrs:
+        - "--ignore-db-dir=lost+found"
+        imagePullPolicy: Always
+        name: mysql
+        ports:
+        - containerPort: 3306
+          name: mysql
+        
+        volumeMounts:
+        - name: local
+          mountPath: /var/lib/mysql/
+      volumes:
+      - name: local
+        PersistentVolumeClaim:
+          claimName: local
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+  labels:
+    app: php
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+    spec:
+      containers:
+      - name: php
+        image: #precisa colocar a imagem do docker hub
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

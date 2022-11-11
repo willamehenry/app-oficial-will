@@ -1,8 +1,8 @@
 <?php
-$servername = "";
+$servername = "my-conector";
 $username = "root";
-$password = "Senha123";
-$database = "meubanco";
+$password = "willameh";
+$database = "will-bank";
 
 // Criar conexão
 
