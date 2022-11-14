@@ -12,7 +12,9 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: willamehenry/meu-data-app:1.0
+      - image: willamehenry/database-app:1.0
+        args:
+        - "--ignore-db-dir=lost+found"
         imagePullPolicy: Always
         name: mysql
         ports:

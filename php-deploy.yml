@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: willamehenry/meu-backnt-will:1.0
+        image: willamehenry/backend-app:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80

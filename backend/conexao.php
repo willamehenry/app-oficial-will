@@ -8,6 +8,8 @@ $database = "will-bank";
 
 
 $link = new mysqli($servername, $username, $password, $database);
+$conexao = mysqli_connect('localhost:3306', 'root', '', 'will-bank');
+
 
 /* check connection */
 if (mysqli_connect_errno()) {
